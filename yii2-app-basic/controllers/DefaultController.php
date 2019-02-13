@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\db\Query;
 use yii\helpers\VarDumper; 
 use yii\web\Controller;
 
@@ -99,6 +100,20 @@ class DefaultController extends Controller{
 
         }
 
+    }
+
+    public function actionConsulta(){
+
+        $q = new Query();
+        $rows = $q->select(['p.id', 'p.name as product', 'p.release_date', 'c.name as company'])
+            ->from('product p')
+            ->join('company c', 'p.company_id = c.id')
+            ->where(['or like', 'p.name', ['wine', 'fish']])
+                ->andWhere(['>', 'p.id', 30])
+//            ->limit(4)
+                ->orderBy('p.name desc')
+            ->all();
+        VarDumper::dump($rows, 10, true);
     }
 
 

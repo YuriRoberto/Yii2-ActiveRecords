@@ -20,9 +20,9 @@ class DefaultController extends Controller{
 
     }
 
-    public function actionCompany(){
+    public function actionCompany($id){
 
-        $company = Yii::$app->db->createCommand("select * from company where id = :id". [
+        $company = Yii::$app->db->createCommand("select * from company where id = :id", [
             ':id' => $id
         ])->queryOne();
 
@@ -41,6 +41,37 @@ class DefaultController extends Controller{
         foreach ($products as $product){
             echo $product['product'] . ", " . $product['release_date'] . ", " . $product['company'] . "<br>";
         }
+
+    }
+
+    public function actionUpdate(){
+
+        //Yii::$app->db->createCommand("update company set name = 'Google' where id = 1")->execute();
+        Yii::$app->db->createCommand()->update('company', ['name' => 'Microsoft'], "id = 2")->execute();
+
+    }
+
+    public function actionInsert(){
+
+        Yii::$app->db->createCommand()->insert('company', ['name' => "School of Net"])->execute();
+
+    }
+
+    public function actionDelete(){
+
+        Yii::$app->db->createCommand('company', 'id = 11')->execute();
+
+    }
+
+    public function actionBatchInsert(){
+
+        Yii::$app->db->createCommand()->batchInsert('company', ['name'],
+            [
+                ['School of net'],
+                ['Uber'],
+                ['Spotify']
+            ]
+        )->execute();
 
     }
 

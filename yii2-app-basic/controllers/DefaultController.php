@@ -75,5 +75,32 @@ class DefaultController extends Controller{
 
     }
 
+    public function actionTransaction(){
+
+        $sql1 = "update company set name = 'Teste' where id = 1";
+        $sql2 = "update company set name = 'Teste 2' where id = 2";
+
+        $db = Yii::$app->db;
+        $t = $db->beginTransaction();
+
+        //$db->createCommand($sql1)->execute();
+        //$db->createCommand($sql2)->execute();
+        //$t->rollBack();
+
+        try {
+            $db->createCommand($sql1)->execute();
+            $db->createCommand($sql2)->execute();
+            $t->commit();
+
+        } catch (\Exception $e) {
+
+            $t->rollBack();
+            throw $e;
+
+        }
+
+    }
+
+
 }
 

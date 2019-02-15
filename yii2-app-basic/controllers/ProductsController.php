@@ -26,9 +26,16 @@ class ProductsController extends Controller {
 
     public function actionVer(){
 
-        $product = Product::find()->where(['id' => 1])->one();
+        //$product = Product::find()->where(['id' => 1])->one();
+        $product = Product::findOne(['id' => $id]);
 
-        VarDumper::dump($product, 10, true);
+        echo $product->id . '<br>';
+        echo $product->name . '<br>';
+        echo $product->release_date . '<br>';
+        echo $product->company->name . '<br>';
+        echo $product->description . '<br>';
+
+        //VarDumper::dump($product, 10, true);
 
     }
 

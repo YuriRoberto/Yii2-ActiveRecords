@@ -10,6 +10,12 @@ class Company extends ActiveRecord {
         return 'company';
     }
 
+    public function getProducts(){
+
+        return $this->hasMany(Product::className(), ['company_id' => 'id']);
+
+    }
+
 }
 
 

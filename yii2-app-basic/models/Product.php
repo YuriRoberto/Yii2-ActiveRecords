@@ -18,5 +18,11 @@ class Product extends ActiveRecord {
 
     }
 
+    public function  getCompany(){
+
+        return $this->hasOne(Company::className(), ['id' => 'company_id']);
+
+    }
+
 
 }

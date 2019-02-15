@@ -10,11 +10,19 @@ class CompaniesController extends Controller{
 
     public function actionIndex(){
 
-        $companies = Company::find()->all();
+        $companies = Company::find()->with(['products'])->all();
 
         foreach ($companies as $company){
 
             echo $company->id . " -- " . $company->name . "<br>";
+
+            foreach ($company->products as $product) {
+
+                echo $product->name . "<br>";
+
+            }
+
+            echo "<hr>";
 
         }
 

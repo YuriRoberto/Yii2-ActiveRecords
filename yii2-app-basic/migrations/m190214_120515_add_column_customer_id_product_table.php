@@ -12,7 +12,7 @@ class m190214_120515_add_column_customer_id_product_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('product', 'customer_id', 'int(11)');
+        $this->addColumn('product', 'customer_id', 'int(11)'); 
         $this->addForeignKey('fk_customer_product', 'product', 'customer_id', 'customer', 'id');
     }
 

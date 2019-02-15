@@ -32,5 +32,22 @@ class ProductsController extends Controller {
 
     }
 
+    public function salvar(){
+
+        $dados = [
+            'name' => "Celular",
+            'release_date' => '2017-05-29',
+            'description' => "Um celular bacana",
+            'company_id' => "Motorola"
+        ];
+
+        \Yii::$app->request->post();
+
+        $product = new Product();
+        $product->setAttributes($dados);
+        $company->save();
+
+    }
+
 }
 

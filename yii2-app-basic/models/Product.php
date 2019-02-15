@@ -10,4 +10,13 @@ class Product extends ActiveRecord {
         return "product";
     }
 
+    public function rules() {
+
+        return [
+            [['name', 'release_date', 'description', 'company_id'], 'safe']
+        ];
+
+    }
+
+
 }
